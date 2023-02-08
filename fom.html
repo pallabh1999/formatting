@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS For Beginners</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>JS For Beginners</h1>
+    </header>
+
+    <section class="container">
+        <form onsubmit="saveToLocalStorage(event)">
+            <h1>Add User</h1>
+            <div class="msg"></div>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" required>
+            </div>
+            <input class="btn" type="submit" value="Submit">
+        </form>
+
+        <ul id="users"></ul>
+
+        <!-- <ul class="items">
+        <li class="item">Item 1</li>
+        <li class="item">Item 2</li>
+        <li class="item">Item 3</li>
+      </ul> -->
+    </section>
+    <script>
+        function saveToLocalStorage(event) {
+            // to prevent from unecessary reloading
+            event.preventDefault();
+            var name = event.target.name.value;
+            var email = event.target.email.value;
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+
+
+            var myobj = {
+                name: 'pallavi',
+                age: 23
+            }
+            // serialized means coverting the data into some form of re readable data 
+            // after serialization we get the exact that what our object has
+            var myobj_serialized = JSON.stringify(myobj);
+            console.log(myobj_serialized);
+            // now we can also store myobj_serialized inside the local storage
+            localStorage.setItem('myobj', myobj_serialized);
+            console.log(localStorage);
+            // now to get that object and start using like normal.we can do a similar thing.we are going to reverse that effect
+
+            // we used opposite of above json.stringify as json.parse
+            var myobj_deserialized = JSON.parse(localStorage.getItem('myobj'));
+            console.log(myobj_deserialized);
+        }
+    </script>
+</body>
+
+</html>
